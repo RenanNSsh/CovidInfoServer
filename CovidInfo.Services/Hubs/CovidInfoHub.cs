@@ -14,7 +14,9 @@ namespace CovidInfo.Services.Hubs {
         }   
 
         public async Task GetCovidInfo(string country) {
-            await Clients.All.SendAsync("ReceiveCovidInfo", _service.GetCovidInfo(country));
+            Console.WriteLine(country);
+            var covidInfo = await _service.GetCovidInfo(country);
+            await Clients.All.SendAsync("ReceiveCovidInfo", covidInfo);
         }
     }
 }
